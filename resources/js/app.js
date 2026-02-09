@@ -1,1 +1,1 @@
-import './bootstrap';
+import './scripts/time.js';
