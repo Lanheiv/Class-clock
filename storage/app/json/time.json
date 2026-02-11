@@ -3,27 +3,27 @@
     [
       {
         "id": 1,
-        "day": "monday",
+        "day": "Pirmdiena",
         "tmTime": "longTm"
       },
       {
         "id": 2,
-        "day": "tuesday",
+        "day": "Otrdiena",
         "tmTime": "longTm"
       },
       {
         "id": 3,
-        "day": "wednesday",
+        "day": "Trešdiena",
         "tmTime": "longTm"
       },
       {
         "id": 4,
-        "day": "thursday",
+        "day": "Ceturtdiena",
         "tmTime": "longTm"
       },
       {
         "id": 5,
-        "day": "friday",
+        "day": "Piektdiena",
         "tmTime": "shortTm"
       }
     ],
