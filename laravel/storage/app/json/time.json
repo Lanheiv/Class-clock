@@ -1,0 +1,49 @@
+{
+  "d": [
+    [
+      {
+        "id": 1,
+        "day": "Pirmdiena",
+        "tmTime": "longTm"
+      },
+      {
+        "id": 2,
+        "day": "Otrdiena",
+        "tmTime": "longTm"
+      },
+      {
+        "id": 3,
+        "day": "Trešdiena",
+        "tmTime": "longTm"
+      },
+      {
+        "id": 4,
+        "day": "Ceturtdiena",
+        "tmTime": "longTm"
+      },
+      {
+        "id": 5,
+        "day": "Piektdiena",
+        "tmTime": "shortTm"
+      }
+    ],
+    {
+      "longTm": [
+        { "id": 0, "start": 510, "end": 590},
+        { "id": 1, "start": 610, "end": 690},
+        { "id": 2, "start": 690, "end": 750, "type": "break"},
+        { "id": 3, "start": 750, "end": 830},
+        { "id": 4, "start": 840, "end": 920},
+        { "id": 5, "start": 930, "end": 1010}
+      ],
+      "shortTm": [
+        { "id": 0, "start": 490, "end": 570 },
+        { "id": 1, "start": 580, "end": 660 },
+        { "id": 2, "start": 670, "end": 750 },
+        { "id": 3, "start": 750, "end": 780, "type": "break"},
+        { "id": 4, "start": 780, "end": 860 },
+        { "id": 5, "start": 870, "end": 950 }
+      ]
+    }
+  ]
+}
