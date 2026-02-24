@@ -17,6 +17,11 @@ class IndexController extends Controller
             $dataRequestController->DataCreate();
         }
 
+        $jsonData = Storage::disk("local")->get('json/formatted_data.json');
+        if(!$jsonData) {
+            $jsonData = Storage::disk("local")->get('json/example.json');
+        }
+
         return view("index");
     }
 }

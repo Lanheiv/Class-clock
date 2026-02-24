@@ -4,6 +4,7 @@ import json
 from .file_function import *
 
 def raw_data_formatting():
+    formated_data_store_path = "laravel/storage/app/json/formatted_data.json" # old path "scoper/files/formatted_data.json"
     lesson_data = {"r": {}}
 
     try:
@@ -21,7 +22,7 @@ def raw_data_formatting():
         try:
             regularttGetDatalist_data.append(json.loads(read_file(f'scoper/files/raw/regularttGetData_{fordata["tt_num"]}.json')))
         except Exception:
-            write_errore_file(f"Failed to read/parse regularttGetData_{fordata["tt_num"]}.json:\n" + traceback.format_exc())
+            write_errore_file(f"Failad to read/parse regularttGetData_{fordata["tt_num"]}.json:\n" + traceback.format_exc())
             return
 
     for count, group in enumerate(lesson_data["r"]["groups"]):
@@ -51,7 +52,7 @@ def raw_data_formatting():
         write_errore_file("Failed to read time data" + traceback.format_exc())
         return
 
-    write_file("scoper/files/formatted_data.json", lesson_data)
+    write_file(formated_data_store_path, lesson_data)
 
 def get_teacher(teacher_id, dbiAccessorRes):
     teacher_data = dbiAccessorRes[14]["data_rows"]
