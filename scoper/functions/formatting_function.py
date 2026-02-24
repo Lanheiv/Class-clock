@@ -1,3 +1,4 @@
+import traceback
 import json
 
 from .file_function import *
@@ -5,14 +6,23 @@ from .file_function import *
 def raw_data_formatting():
     lesson_data = {"r": {}}
 
-    TTViewerData_data = json.loads(read_file('scoper/files/raw/TTViewerData.json'))
+    try:
+        TTViewerData_data = json.loads(read_file('scoper/files/raw/TTViewerData.json'))
+    except Exception:
+        write_errore_file("Failed to read/parse TTViewerData.json:\n" + traceback.format_exc())
+        return
+
     lesson_data["r"] = { "default_num": TTViewerData_data["r"]["regular"]["default_num"], "groups": [], "lesson_time":[] }
     for fordata in TTViewerData_data["r"]["regular"]["timetables"]:
         lesson_data["r"]["groups"].append({ "name": fordata["text"], "tt_num": fordata["tt_num"], "year": fordata["year"], "lessons": [] })
 
     regularttGetDatalist_data = []
     for fordata in lesson_data["r"]["groups"]:
-        regularttGetDatalist_data.append(json.loads(read_file(f'scoper/files/raw/regularttGetData_{fordata["tt_num"]}.json')))
+        try:
+            regularttGetDatalist_data.append(json.loads(read_file(f'scoper/files/raw/regularttGetData_{fordata["tt_num"]}.json')))
+        except Exception:
+            write_errore_file(f"Failed to read/parse regularttGetData_{fordata["tt_num"]}.json:\n" + traceback.format_exc())
+            return
 
     for count, group in enumerate(lesson_data["r"]["groups"]):
         dbiAccessorRes = regularttGetDatalist_data[count]["r"]["dbiAccessorRes"]["tables"]
@@ -35,10 +45,12 @@ def raw_data_formatting():
                     for day in day_data
                 ]
             })
+    try:
+        lesson_data["r"]["lesson_time"] = json.loads(read_file('scoper/files/time.json'))
+    except Exception:
+        write_errore_file("Failed to read time data" + traceback.format_exc())
+        return
 
-    lesson_data["r"]["lesson_time"] = json.loads(read_file('scoper/files/time.json'))
-
-    #print(json.dumps(lesson_data, indent=2))
     write_file("scoper/files/formatted_data.json", lesson_data)
 
 def get_teacher(teacher_id, dbiAccessorRes):

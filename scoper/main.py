@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta
+import traceback
+import sys
 
 from functions.file_function import *
 from functions.session_function import * 
@@ -25,8 +27,16 @@ TTViewerData = [
     {"__args":[None,2025],"__gsh":"00000000"}
 ]
 
-result = get_post_data(data_url, headers, TTViewerData)
-write_file(TTViewerData_path, result)
+try:
+    result = get_post_data(data_url, headers, TTViewerData)
+    if not result:
+        write_errore_file("TTViewerData request returned empty")
+        sys.exit()
+
+    write_file(TTViewerData_path, result)
+except Exception:
+    write_errore_file(traceback.format_exc())
+    sys.exit()
 
 data = json.loads(read_file(TTViewerData_path))
 timetables = [{"default_num": data["r"]["regular"]["default_num"]}, []]
@@ -43,8 +53,17 @@ mainDBIAccessor = [
     {"__args":[None,2025,{"vt_filter":{"datefrom":date[0],"dateto":date[1]}},{"op":"fetch","needed_part":{"teachers":["short","name","firstname","lastname","callname","subname","code","cb_hidden","expired"],"classes":["short","name","firstname","lastname","callname","subname","code","classroomid"],"classrooms":["short","name","firstname","lastname","callname","subname","code"],"igroups":["short","name","firstname","lastname","callname","subname","code"],"students":["short","name","firstname","lastname","callname","subname","code","classid"],"subjects":["short","name","firstname","lastname","callname","subname","code"],"events":["typ","name"],"event_types":["name","icon"],"subst_absents":["date","absent_typeid","groupname"],"periods":["short","name","firstname","lastname","callname","subname","code","period","starttime","endtime"],"dayparts":["starttime","endtime"],"dates":["tt_num","tt_day"]},"needed_combos":{}}],"__gsh":"00000000"}
 ]
 
-result = get_post_data(data_url, headers, mainDBIAccessor)
-write_file(mainDBIAccessor_path, result)
+try:
+    result = get_post_data(data_url, headers, mainDBIAccessor)
+
+    if not result:
+        write_errore_file("mainDBIAccessor request returned empty")
+        sys.exit()
+
+    write_file(mainDBIAccessor_path, result)
+except Exception:
+        write_errore_file(traceback.format_exc())
+        sys.exit()
 
 for fordata in timetables[1]:
     regularttGetData = [
@@ -52,9 +71,17 @@ for fordata in timetables[1]:
         {"__args":[None, fordata["tt_num"]], "__gsh":"00000000"}
     ]
 
-    result = get_post_data(data_url, headers, regularttGetData)
+    try:
+        result = get_post_data(data_url, headers, regularttGetData)
 
-    regularttGetData_path = f'{raw_path}regularttGetData_{fordata["tt_num"]}.json'
-    write_file(regularttGetData_path, result)
+        if not result:
+            write_errore_file(f"regularttGetData {fordata["tt_num"]} request returned empty")
+            sys.exit()
+
+        regularttGetData_path = f'{raw_path}regularttGetData_{fordata["tt_num"]}.json'
+        write_file(regularttGetData_path, result)
+    except Exception:
+            write_errore_file(traceback.format_exc())
+            sys.exit()
 
 raw_data_formatting()

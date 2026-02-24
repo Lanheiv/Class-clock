@@ -1,3 +1,4 @@
+from datetime import datetime
 import requests
 import json
 import os
@@ -21,3 +22,7 @@ def delete_files():
                 os.unlink(file_path)
         except Exception as e:
             print(f'Error deleting {file_path}: {e}')
+
+def write_errore_file(data):
+    with open("scoper/files/error_log.txt", "a") as f:
+        f.write(f"[{datetime.now()}] {data}\n")

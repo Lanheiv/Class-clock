@@ -1,4 +1,6 @@
 __pycache__
 
 /files/raw/*
-/files/formatted_data.json
+
+formatted_data.json
+error_log.txt
