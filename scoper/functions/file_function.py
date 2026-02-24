@@ -3,8 +3,10 @@ import json
 import os
 
 def write_file(path, data):
+    if hasattr(data, "json"):
+        data = data.json()
     with open(path, 'w') as f:
-        json.dump(data.json(), f)    
+        json.dump(data, f, indent=2) 
 
 def read_file(path):
     with open(path, 'r') as f:
