@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+use App\Http\Controllers\DataRequestController;
+
 class IndexController extends Controller
 {
     public function index() {
-        $time = Storage::disk("local")->get('json/time.json');
+        $dataRequestController = new DataRequestController();
+        $chack = $dataRequestController->DataChack();
 
-        return view("index", compact("time"));
+        if(!$chack) {
+            $dataRequestController->DataCreate();
+        }
+
+        return view("index");
     }
 }
