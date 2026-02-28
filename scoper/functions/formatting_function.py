@@ -46,12 +46,7 @@ def raw_data_formatting():
                     for day in day_data
                 ]
             })
-    try:
-        lesson_data["r"]["lesson_time"] = json.loads(read_file('scoper/files/time.json'))
-    except Exception:
-        write_errore_file("Failed to read time data" + traceback.format_exc())
-        return
-
+            
     write_file(formated_data_store_path, lesson_data)
 
 def get_teacher(teacher_id, dbiAccessorRes):

@@ -4,4 +4,6 @@
             
         </div>
     </div>
+
+    <x-louding />
 </x-layout>

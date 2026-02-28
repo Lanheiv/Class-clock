@@ -3,6 +3,7 @@
 !public/
 
 !json/
-!json/example.json
+!example.json
+!time.json
 
 !.gitignore
