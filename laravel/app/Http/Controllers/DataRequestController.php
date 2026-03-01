@@ -19,14 +19,14 @@ class DataRequestController extends Controller
             $this->create();
         }
 
+        $time = Storage::disk("local")->get("json/time.json");
         $jsonData = Storage::disk('local')->get('json/formatted_data.json');
         if(!$jsonData) {
             $jsonData = Storage::disk("local")->get('json/example.json');
-            $error = ["Formatted_data dont exist, using example instead!"];
+            $error = ["Kļūda, nav iespējams iegūt jaunākos datus. Tiek izmantots piemēra dati, kādas no funkcijām var nestrādāt dēļ tā."];
         }
-        $jsonData = json_decode($jsonData, true);
 
-        return response()->json([$jsonData, $error]);
+        return response()->json(["data" => json_decode($jsonData, true), "time" => $time, "error" => $error]);
     }
     public function chack() {
         $existsToday = DataRequest::whereDate('created_at', now()->toDateString())->exists();

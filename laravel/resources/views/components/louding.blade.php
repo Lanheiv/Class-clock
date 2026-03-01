@@ -1,4 +1,4 @@
-<div id="louding_screen" class="fixed inset-0 z-1000 bg-white/60 hidden">
+<div id="louding_screen" class="fixed inset-0 z-1000 bg-white/60">
   <div class="flex h-full w-full items-center justify-center">
     <svg class="animate-spin h-8 w-8 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
