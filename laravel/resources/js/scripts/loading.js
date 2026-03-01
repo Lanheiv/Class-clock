@@ -1,4 +1,4 @@
-export function loading_screen() {
-    let element = document.getle("myDIV");
-    element.classList.toggle("display");
+export function loading_screen_toggle() {
+    let element = document.getElementById("louding_screen");
+    element.classList.toggle("hidden");
 }
