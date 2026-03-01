@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('data_requests', function (Blueprint $table) {
             $table->id();
-            $table->string("status");
             $table->timestamp('created_at')->useCurrent();
         });
     }
