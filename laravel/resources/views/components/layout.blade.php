@@ -7,6 +7,11 @@
         <title>Class-clock</title>
     </head>
     <body>
+        <x-warning />
+        <x-nav />
+
         {{ $slot }}
+
+        <x-louding />
     </body>
 </html>

@@ -23,7 +23,7 @@ class DataRequestController extends Controller
         $jsonData = Storage::disk('local')->get('json/formatted_data.json');
         if(!$jsonData) {
             $jsonData = Storage::disk("local")->get('json/example.json');
-            $error = ["Kļūda, nav iespējams iegūt jaunākos datus. Tiek izmantots piemēra dati, kādas no funkcijām var nestrādāt dēļ tā."];
+            $error = ["Kļūda, nav iespējams iegūt jaunākos datus. Tiek izmantoti piemēra dati, kādas no funkcijām var nestrādāt dēļ tā."];
         }
 
         return response()->json(["data" => json_decode($jsonData, true), "time" => $time, "error" => $error]);

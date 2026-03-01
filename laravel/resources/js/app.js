@@ -18,5 +18,25 @@ window.addEventListener("load", function() {
             errore_element.classList.remove("hidden");
             errore_element_input.innerHTML = error;
         }
+
+        time_select(data)
     });
 });
+
+function time_select(select_data) {
+    let select_element = document.getElementById("underline_select");
+
+    let array_data = select_data.r.groups;
+    array_data.forEach((g, index) => {
+        const option = document.createElement("option");
+
+        option.textContent = g.name;
+        option.value = index;
+        
+        if(g.tt_num === select_data.r.default_num) {
+            option.selected = true;
+        }
+
+        select_element.appendChild(option);
+    })
+}

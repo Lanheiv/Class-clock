@@ -1,4 +1,4 @@
-<div id="errore_warning" class="fixed top-0 left-0 z-100 w-full hidden"> 
+<div id="errore_warning" class="fixed z-100 w-full hidden"> 
     <div class="content-grid w-full">
         <div class="mx-auto max-w-3xl flex items-center gap-4 rounded-b-md bg-yellow-400 px-4 py-2 text-sm shadow-md">
             <svg viewBox="0 0 24 24" class="shrink-0 text-yellow-800 w-6 h-6 mr-2">
