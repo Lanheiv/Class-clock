@@ -7,7 +7,7 @@
 
             <p id="errore_warning_input" class="flex-1"></p>
             
-            <button class="shrink-0 rounded-full px-2 text-lg font-semibold active:text-yellow-900">
+            <button onclick="document.getElementById('errore_warning').classList.add('hidden');" class="shrink-0 rounded-full px-2 text-lg font-semibold active:text-yellow-900">
                 x
             </button>
         </div>
