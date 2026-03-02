@@ -35,6 +35,7 @@ select_element.addEventListener("change", function() {
 });
 select_gruop_element.addEventListener("change", function() {
     lesson_id = this.value;
+    localStorage.setItem('lastGroup', lesson_id);
 
     show_grop_lessins();
 });
@@ -58,6 +59,7 @@ function time_select() {
 }
 function set_grop_lessins() { 
     const group_lessons_data = data.r.groups.find(g => g.tt_num == tt_num);
+    const saved_group = localStorage.getItem('lastGroup');
     
     select_gruop_element.options.length = 0;
     
@@ -66,6 +68,11 @@ function set_grop_lessins() {
             const option = document.createElement("option");
             option.textContent = lesson.name;
             option.value = index;
+
+            if(saved_group == index) {
+                option.selected = true;
+                lesson_id = index;
+            }
             
             select_gruop_element.appendChild(option);
         });
