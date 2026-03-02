@@ -103,11 +103,13 @@ function show_grop_lessins() {
         tr_lessons.appendChild(td_day);
 
         element.day_lesson.forEach(element => {
-            const td_lessons = document.createElement('td');
-            td_lessons.className = "p-4 border-b border-slate-200 py-5";
-            td_lessons.innerHTML = `<p class="block font-semibold text-sm text-slate-800">${element.subject}</p>`;
+            for(let x=1; x <= element.durationperiods; x++) {
+                const td_lessons = document.createElement('td');
+                td_lessons.className = "p-4 border-b border-slate-200 py-5";
+                td_lessons.innerHTML = `<p class="block font-semibold text-sm text-slate-800">${element.subject}</p>`;
 
-            tr_lessons.appendChild(td_lessons);
+                tr_lessons.appendChild(td_lessons);
+            }
         });
 
         tbody.appendChild(tr_lessons);
