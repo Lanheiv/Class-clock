@@ -26,7 +26,7 @@ class DataRequestController extends Controller
             $error = ["Kļūda, nav iespējams iegūt jaunākos datus. Tiek izmantoti piemēra dati, kādas no funkcijām var nestrādāt dēļ tā."];
         }
 
-        return response()->json(["data" => json_decode($jsonData, true), "time" => $time, "error" => $error]);
+        return response()->json(["data" => json_decode($jsonData, true), "time" => json_decode($time, true), "error" => $error]);
     }
     public function chack() {
         $existsToday = DataRequest::whereDate('created_at', now()->toDateString())->exists();

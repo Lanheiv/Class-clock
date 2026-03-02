@@ -9,8 +9,8 @@ let tt_num = 0, lesson_id = 0;
 window.addEventListener("load", function() {
     let test = fetch("/lesson_data").then(response => response.json()).then(d => {
         data = d.data
-        time = d.time
         error = d.error
+        time = d.time
 
         louding_element.classList.add("hidden");
 
@@ -75,5 +75,57 @@ function show_grop_lessins() {
     const group_lessons_data = data.r.groups.find(g => g.tt_num == tt_num);
     const selected_lesson = group_lessons_data?.lessons[lesson_id];
 
-    
+    const tbody = document.getElementById('lesson_tabel');
+    tbody.innerHTML = '';
+
+    time.forEach(element => {
+        
+    });
 }
+
+
+
+
+
+
+
+
+
+function show_grop_lessins() {
+    const group_lessons_data = data.r.groups.find(g => g.tt_num == tt_num);
+    const selected_lesson = group_lessons_data?.lessons[lesson_id];
+
+    const tbody = document.getElementById('lesson_tabel');
+    tbody.innerHTML = '';
+
+    let time = ["8:30-9:50", "10:10-11:30", "11:30-12:30", "12:30-13:50", "14:00-15:20", "15:30-16:50", "15:30-16:50"];
+    
+    time.forEach((timeSlot, rowIndex) => {
+        // Create new row
+        const row = document.createElement('tr');
+        
+        // Time column (Laiks)
+        const timeCell = document.createElement('td');
+        timeCell.className = 'p-4 border-b border-slate-200 py-5';
+        timeCell.innerHTML = `<p class="block font-semibold text-sm text-slate-800">${timeSlot}</p>`;
+        row.appendChild(timeCell);
+        
+        // 5 day columns
+        const days = ['Pirmdiena', 'Otrdiena', 'Trešdiena', 'Ceturtdiena', 'Piektdiena'];
+        days.forEach((dayName, dayIndex) => {
+            const dayCell = document.createElement('td');
+            dayCell.className = 'p-4 border-b border-slate-200 py-5';
+            
+            // Show lesson subject or empty
+            const lessonData = selected_lesson?.[rowIndex];
+            if (lessonData && lessonData.subject) {
+                dayCell.innerHTML = `<p class="text-sm text-slate-500">${lessonData.subject}</p>`;
+            }
+            
+            row.appendChild(dayCell);
+        });
+        
+        tbody.appendChild(row);
+    });
+}
+

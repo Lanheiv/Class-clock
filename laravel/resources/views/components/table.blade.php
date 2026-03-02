@@ -1,5 +1,5 @@
 <div id="tabel" class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
-  <table class="w-full text-left table-auto min-w-max">
+  <table id="lesson_tabel" class="w-full text-left table-auto min-w-max">
     <thead>
       <tr>
         <th class="p-4 border-b border-slate-300 bg-slate-50">
