@@ -72,9 +72,6 @@ function set_grop_lessins() {
     }
 }
 function show_grop_lessins() {
-    const group_lessons_data = data.r.groups.find(g => g.tt_num == tt_num);
-    const selected_lesson = group_lessons_data.lessons[lesson_id];
-
     const thead = document.getElementById("header_row");
     thead.innerHTML = "";
 
@@ -93,4 +90,26 @@ function show_grop_lessins() {
 
     const tbody = document.getElementById("lesson_data");
     tbody.innerHTML = "";
+
+    const group_lessons_data = data.r.groups.find(g => g.tt_num == tt_num);
+    const selected_lesson = group_lessons_data.lessons[lesson_id];
+
+    selected_lesson.days.forEach(element => {
+        const tr_lessons = document.createElement('tr');
+
+        const td_day = document.createElement('td');
+        td_day.className = "p-4 border-b border-slate-200 py-5";
+        td_day.innerHTML = `<p class="text-sm text-slate-500 font-semibold">${element.short}</p>`;
+        tr_lessons.appendChild(td_day);
+
+        element.day_lesson.forEach(element => {
+            const td_lessons = document.createElement('td');
+            td_lessons.className = "p-4 border-b border-slate-200 py-5";
+            td_lessons.innerHTML = `<p class="block font-semibold text-sm text-slate-800">${element.subject}</p>`;
+
+            tr_lessons.appendChild(td_lessons);
+        });
+
+        tbody.appendChild(tr_lessons);
+    });
 }
