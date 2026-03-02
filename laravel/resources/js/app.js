@@ -73,59 +73,24 @@ function set_grop_lessins() {
 }
 function show_grop_lessins() {
     const group_lessons_data = data.r.groups.find(g => g.tt_num == tt_num);
-    const selected_lesson = group_lessons_data?.lessons[lesson_id];
+    const selected_lesson = group_lessons_data.lessons[lesson_id];
 
-    const tbody = document.getElementById('lesson_tabel');
-    tbody.innerHTML = '';
+    const thead = document.getElementById("header_row");
+    thead.innerHTML = "";
 
-    time.forEach(element => {
-        
+    const th_time = document.createElement('th');
+    th_time.className = "p-4 border-b border-slate-300 bg-slate-50";
+    th_time.innerHTML = "<p class='block text-sm font-normal leading-none text-slate-800'>Dienas</p>";
+    thead.appendChild(th_time);
+
+    const time_data = Object.values(time[0].time);
+    time_data.forEach(element => {
+        const th_time = document.createElement('th');
+        th_time.className = "p-4 border-b border-slate-300 bg-slate-50";
+        th_time.innerHTML = `<p class="block text-sm font-normal leading-none text-slate-500">${element.value}</p>`;
+        thead.appendChild(th_time);
     });
+
+    const tbody = document.getElementById("lesson_data");
+    tbody.innerHTML = "";
 }
-
-
-
-
-
-
-
-
-
-function show_grop_lessins() {
-    const group_lessons_data = data.r.groups.find(g => g.tt_num == tt_num);
-    const selected_lesson = group_lessons_data?.lessons[lesson_id];
-
-    const tbody = document.getElementById('lesson_tabel');
-    tbody.innerHTML = '';
-
-    let time = ["8:30-9:50", "10:10-11:30", "11:30-12:30", "12:30-13:50", "14:00-15:20", "15:30-16:50", "15:30-16:50"];
-    
-    time.forEach((timeSlot, rowIndex) => {
-        // Create new row
-        const row = document.createElement('tr');
-        
-        // Time column (Laiks)
-        const timeCell = document.createElement('td');
-        timeCell.className = 'p-4 border-b border-slate-200 py-5';
-        timeCell.innerHTML = `<p class="block font-semibold text-sm text-slate-800">${timeSlot}</p>`;
-        row.appendChild(timeCell);
-        
-        // 5 day columns
-        const days = ['Pirmdiena', 'Otrdiena', 'Trešdiena', 'Ceturtdiena', 'Piektdiena'];
-        days.forEach((dayName, dayIndex) => {
-            const dayCell = document.createElement('td');
-            dayCell.className = 'p-4 border-b border-slate-200 py-5';
-            
-            // Show lesson subject or empty
-            const lessonData = selected_lesson?.[rowIndex];
-            if (lessonData && lessonData.subject) {
-                dayCell.innerHTML = `<p class="text-sm text-slate-500">${lessonData.subject}</p>`;
-            }
-            
-            row.appendChild(dayCell);
-        });
-        
-        tbody.appendChild(row);
-    });
-}
-
