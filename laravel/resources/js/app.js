@@ -102,6 +102,7 @@ function show_grop_lessins() {
         td_day.innerHTML = `<p class="text-sm text-slate-500 font-semibold">${element.short}</p>`;
         tr_lessons.appendChild(td_day);
 
+        element.day_lesson.sort((a, b) => parseInt(a.period) - parseInt(b.period));
         element.day_lesson.forEach(element => {
             for(let x=1; x <= element.durationperiods; x++) {
                 const td_lessons = document.createElement('td');
