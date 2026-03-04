@@ -1,0 +1,4 @@
+Lai scoper strādātu ir nepieciešame pythone (vajag tikai ielādēt pythone neko papildus nevajag)
+
+Ja scoper nestrādās tad tiks izmantoti piemēra dati lai parādītu kā mājaslap strādā.
+Pirmajā mājaslapas ielādē, ja scoper strādā, tad mājaslapa lādēsies ilgāk, jo scoper iegūst datus un apstrādā tos.
